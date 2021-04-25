@@ -19,6 +19,10 @@ GSS <-read.csv(file="GSScsv.csv",header=TRUE)
 Is belief in the bigbang theory (BIGBANG) independent of race (RACE)?
 If not, then whose view differs from whom??
 
+$H_0$:No relation between the race and the big bang theory 
+
+$H_1$ There is a relationship between race and big bang theory. 
+
 # Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
@@ -44,17 +48,20 @@ basicCC <- ggplot(dd2,aes(x=RACE,y=prcnt*100,fill=OWNGUN))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
+According to this chart the data is showing that the bigbang theory is not dependendent in black, other, or white race. 
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ```{r}
-table1 <- xtabs(~RACE + OWNGUN, data=GSS)
+table1 <- xtabs(~BIGBANG + OWNGUN, data=GSS)
 rowPerc(table1)
 colPerc(table1)
 barchartGC(table1, type= 'percent')
 ```
+
+The numerical results shows that the belief in the bigbang theory is still not dependent in race. 
 
 ## Inferential Results
 
@@ -66,6 +73,8 @@ chisqtestGC(table1)
 fisher.test(table1)
 ```
 
+According to the inferential results the p value= 0.4871 which is very significantly low and therefore we reject the null hypothesis.
+
 ## bar chart of the expected %s if roll is true
 
 ```{r}
@@ -73,7 +82,10 @@ table = as.table(matrix(c(15.19, 10.81,10.52,  7.48,78.29, 55.71),nrow =3),row.n
 
 print(table)
 ```
+This data was imputed in the event that the null hypothesis would be true.
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+After assuring all the data, The Chi test showed that there is no relation of race and bigbang theory acceptance becasue the p value was so small it's rejects the null hypothesis.
